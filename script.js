@@ -193,4 +193,21 @@ document.addEventListener('DOMContentLoaded', () => {
             downloadModal.style.display = 'none';
         }
     });
+
+    // Bottom Navigation sync with Top Navigation
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+    const mainNavLinks = document.querySelectorAll('.main-nav a');
+
+    bottomNavItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            bottomNavItems.forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            if (mainNavLinks[index]) {
+                mainNavLinks.forEach(l => l.classList.remove('active'));
+                mainNavLinks[index].classList.add('active');
+            }
+        });
+    });
 });
