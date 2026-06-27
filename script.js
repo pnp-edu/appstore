@@ -10,12 +10,29 @@ document.addEventListener('DOMContentLoaded', () => {
             chip.classList.add('active');
 
             const filter = chip.getAttribute('data-filter');
-            const sections = document.querySelectorAll('.filter-target');
+            const targets = document.querySelectorAll('.filter-target');
             
-            sections.forEach(section => {
-                const categories = section.getAttribute('data-category').split(' ');
+            // Filter banner and cards
+            targets.forEach(target => {
+                const categories = target.getAttribute('data-category').split(' ');
                 if (categories.includes(filter)) {
-                    section.style.display = 'block';
+                    target.style.display = '';
+                } else {
+                    target.style.display = 'none';
+                }
+            });
+
+            // Adjust sections visibility based on visible children
+            const sections = document.querySelectorAll('.app-section');
+            sections.forEach(section => {
+                let hasVisible = false;
+                section.querySelectorAll('.app-item').forEach(item => {
+                    if (item.style.display !== 'none') {
+                        hasVisible = true;
+                    }
+                });
+                if (hasVisible) {
+                    section.style.display = '';
                 } else {
                     section.style.display = 'none';
                 }
