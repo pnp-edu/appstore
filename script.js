@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter chips interaction
     const filterChips = document.querySelectorAll('.filter-chip');
     
+    function applyFilter(filter) {
+        const targets = document.querySelectorAll('.filter-target');
+        
+        // Filter banner and cards
+        targets.forEach(target => {
+            const categories = target.getAttribute('data-category').split(' ');
+            if (categories.includes(filter)) {
+                target.style.display = '';
+            } else {
+                target.style.display = 'none';
+            }
+        });
+
+        // Adjust sections visibility based on visible children
+        const sections = document.querySelectorAll('.app-section');
+        sections.forEach(section => {
+            let hasVisible = false;
+            section.querySelectorAll('.app-item').forEach(item => {
+                if (item.style.display !== 'none') {
+                    hasVisible = true;
+                }
+            });
+            if (hasVisible) {
+                section.style.display = '';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+
     filterChips.forEach(chip => {
         chip.addEventListener('click', () => {
             // Remove active class from all
@@ -10,35 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
             chip.classList.add('active');
 
             const filter = chip.getAttribute('data-filter');
-            const targets = document.querySelectorAll('.filter-target');
-            
-            // Filter banner and cards
-            targets.forEach(target => {
-                const categories = target.getAttribute('data-category').split(' ');
-                if (categories.includes(filter)) {
-                    target.style.display = '';
-                } else {
-                    target.style.display = 'none';
-                }
-            });
-
-            // Adjust sections visibility based on visible children
-            const sections = document.querySelectorAll('.app-section');
-            sections.forEach(section => {
-                let hasVisible = false;
-                section.querySelectorAll('.app-item').forEach(item => {
-                    if (item.style.display !== 'none') {
-                        hasVisible = true;
-                    }
-                });
-                if (hasVisible) {
-                    section.style.display = '';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
+            applyFilter(filter);
         });
     });
+
+    // Run initial filter on load based on active chip
+    const activeChip = document.querySelector('.filter-chip.active');
+    if (activeChip) {
+        applyFilter(activeChip.getAttribute('data-filter'));
+    }
 
     // Horizontal scrolling with mouse wheel for app lists
     const appLists = document.querySelectorAll('.app-list');
