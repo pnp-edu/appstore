@@ -8,6 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
             filterChips.forEach(c => c.classList.remove('active'));
             // Add active to clicked
             chip.classList.add('active');
+
+            const filter = chip.getAttribute('data-filter');
+            const sections = document.querySelectorAll('.filter-target');
+            
+            sections.forEach(section => {
+                const categories = section.getAttribute('data-category').split(' ');
+                if (categories.includes(filter)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
         });
     });
 
