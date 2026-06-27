@@ -3,12 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterChips = document.querySelectorAll('.filter-chip');
     
     function applyFilter(filter) {
+        const query = document.getElementById('search-input')?.value.toLowerCase() || '';
         const targets = document.querySelectorAll('.filter-target');
         
         // Filter banner and cards
         targets.forEach(target => {
             const categories = target.getAttribute('data-category').split(' ');
-            if (categories.includes(filter)) {
+            const matchesCategory = categories.includes(filter);
+            
+            let matchesSearch = true;
+            if (target.classList.contains('app-item')) {
+                const appName = target.querySelector('.app-name').textContent.toLowerCase();
+                matchesSearch = appName.includes(query);
+            }
+            
+            if (matchesCategory && matchesSearch) {
                 target.style.display = '';
             } else {
                 target.style.display = 'none';
@@ -48,6 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeChip = document.querySelector('.filter-chip.active');
     if (activeChip) {
         applyFilter(activeChip.getAttribute('data-filter'));
+    }
+
+    // Real-time search filter
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+            const currentActiveChip = document.querySelector('.filter-chip.active');
+            if (currentActiveChip) {
+                applyFilter(currentActiveChip.getAttribute('data-filter'));
+            }
+        });
     }
 
     // Horizontal scrolling with mouse wheel for app lists
