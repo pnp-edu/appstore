@@ -86,14 +86,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const edupolAndroidBtn = document.getElementById('edupol-android-btn');
     const edupolWebBtn = document.getElementById('edupol-web-btn');
     const edupolPcBtn = document.getElementById('edupol-pc-btn');
+    const actiumAndroidBtn = document.getElementById('actium-android-btn');
+    const actiumPcBtn = document.getElementById('actium-pc-btn');
     
     const detailsModalAndroid = document.getElementById('details-modal-android');
     const detailsModalWeb = document.getElementById('details-modal-web');
     const detailsModalPc = document.getElementById('details-modal-pc');
+    const detailsModalActiumAndroid = document.getElementById('details-modal-actium-android');
+    const detailsModalActiumPc = document.getElementById('details-modal-actium-pc');
     
     const closeDetailsAndroid = document.getElementById('close-details-modal-android');
     const closeDetailsWeb = document.getElementById('close-details-modal-web');
     const closeDetailsPc = document.getElementById('close-details-modal-pc');
+    const closeDetailsActiumAndroid = document.getElementById('close-details-modal-actium-android');
+    const closeDetailsActiumPc = document.getElementById('close-details-modal-actium-pc');
     
     const installBtn = document.getElementById('detail-install-btn');
     const downloadModal = document.getElementById('download-modal');
@@ -123,6 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Click on ACTIUM Android card opens ACTIUM Android details
+    if (actiumAndroidBtn) {
+        actiumAndroidBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            detailsModalActiumAndroid.style.display = 'flex';
+        });
+    }
+
+    // Click on ACTIUM PC card opens ACTIUM PC details
+    if (actiumPcBtn) {
+        actiumPcBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            detailsModalActiumPc.style.display = 'flex';
+        });
+    }
+
     // Close Android details
     if (closeDetailsAndroid) {
         closeDetailsAndroid.addEventListener('click', () => {
@@ -141,6 +163,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeDetailsPc) {
         closeDetailsPc.addEventListener('click', () => {
             detailsModalPc.style.display = 'none';
+        });
+    }
+
+    // Close ACTIUM Android details
+    if (closeDetailsActiumAndroid) {
+        closeDetailsActiumAndroid.addEventListener('click', () => {
+            detailsModalActiumAndroid.style.display = 'none';
+        });
+    }
+
+    // Close ACTIUM PC details
+    if (closeDetailsActiumPc) {
+        closeDetailsActiumPc.addEventListener('click', () => {
+            detailsModalActiumPc.style.display = 'none';
         });
     }
 
@@ -209,6 +245,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (e.target === detailsModalPc) {
             detailsModalPc.style.display = 'none';
+        }
+        if (e.target === detailsModalActiumAndroid) {
+            detailsModalActiumAndroid.style.display = 'none';
+        }
+        if (e.target === detailsModalActiumPc) {
+            detailsModalActiumPc.style.display = 'none';
         }
         if (e.target === downloadModal) {
             downloadModal.style.display = 'none';
