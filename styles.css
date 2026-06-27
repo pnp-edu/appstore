@@ -15,11 +15,18 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--color-bg);
     color: var(--color-text-main);
     -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -174,7 +181,11 @@ body {
 .content-area {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 16px 24px;
+    height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 /* Promo Banner */
@@ -184,40 +195,41 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px;
+    padding: 24px 40px;
     color: white;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
 }
 
 .promo-content {
-    max-width: 50%;
+    max-width: 60%;
     z-index: 2;
 }
 
 .promo-content h2 {
-    font-size: 36px;
+    font-size: 28px;
     line-height: 1.2;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
 .promo-content p {
-    font-size: 16px;
+    font-size: 14px;
     color: #e8eaed;
-    margin-bottom: 24px;
-    line-height: 1.5;
+    margin-bottom: 16px;
+    line-height: 1.4;
 }
 
 .btn-promo {
     background-color: #1cf298; /* Mint green */
     color: #000;
     border: none;
-    padding: 10px 24px;
+    padding: 8px 20px;
     border-radius: 20px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     cursor: pointer;
 }
@@ -228,10 +240,10 @@ body {
 
 .promo-image {
     position: absolute;
-    right: 10%;
-    top: -20%;
-    width: 400px;
-    height: 150%;
+    right: 5%;
+    top: -10%;
+    width: 280px;
+    height: 120%;
     transform: rotate(5deg);
     opacity: 0.8;
 }
@@ -240,13 +252,17 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    box-shadow: 0 0 40px rgba(28, 242, 152, 0.4);
+    box-shadow: 0 0 30px rgba(28, 242, 152, 0.3);
     border-radius: 12px;
 }
 
 /* App Sections */
 .app-section {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .section-title {
