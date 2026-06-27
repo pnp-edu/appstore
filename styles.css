@@ -783,21 +783,75 @@ body {
 /* Responsive details modal */
 @media (max-width: 768px) {
     .details-modal-content {
-        height: 100vh;
+        margin-top: 48px;
+        height: calc(100vh - 48px);
         width: 100%;
-        border-radius: 0;
+        border-radius: 16px 16px 0 0;
+    }
+    .close-details-btn {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+    .details-hero {
+        height: 210px;
+    }
+    .details-hero-overlay {
+        padding: 12px 16px;
+    }
+    .details-header-info {
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+    .details-app-icon {
+        width: 60px;
+        height: 60px;
+    }
+    .details-title-group h1 {
+        font-size: 20px;
+    }
+    .details-developer {
+        font-size: 13px;
+        margin: 2px 0;
+    }
+    .details-stats {
+        margin-bottom: 8px;
+        gap: 12px;
+    }
+    .stat-divider {
+        height: 18px;
+    }
+    .details-actions {
+        gap: 8px;
+    }
+    .btn-install, .btn-secondary-link {
+        padding: 8px 18px;
+        font-size: 13px;
+        border-radius: 6px;
     }
     .details-body {
         grid-template-columns: 1fr;
-        padding: 20px;
-    }
-    .details-hero {
-        height: 240px;
-    }
-    .details-hero-overlay {
         padding: 16px;
+        gap: 16px;
     }
-    .details-title-group h1 {
-        font-size: 22px;
+    .details-section h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    .details-desc {
+        font-size: 13px;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+    .detail-tag {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    .requirements-list li {
+        font-size: 12px;
+        margin-bottom: 4px;
+        line-height: 1.4;
     }
 }
