@@ -223,11 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Direct download if we have a high confidence guess
             if (arch === 'arm64') {
-                window.location.href = 'apks/app-arm64-v8a-release.apk';
+                window.location.href = 'apks/app-arm64-v8a-release.apk?t=' + Date.now();
             } else if (arch === 'armv7') {
-                window.location.href = 'apks/app-armeabi-v7a-release.apk';
+                window.location.href = 'apks/app-armeabi-v7a-release.apk?t=' + Date.now();
             } else if (arch === 'x86_64') {
-                window.location.href = 'apks/app-x86_64-release.apk';
+                window.location.href = 'apks/app-x86_64-release.apk?t=' + Date.now();
             } else {
                 // If we can't reliably detect it, show the selection sub-modal
                 downloadModal.style.display = 'flex';
@@ -278,11 +278,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Direct download if we have a high confidence guess
             if (arch === 'arm64') {
-                window.location.href = 'apks/actium-arm64-v8a-release.apk';
+                window.location.href = 'apks/actium-arm64-v8a-release.apk?t=' + Date.now();
             } else if (arch === 'armv7') {
-                window.location.href = 'apks/actium-armeabi-v7a-release.apk';
+                window.location.href = 'apks/actium-armeabi-v7a-release.apk?t=' + Date.now();
             } else if (arch === 'x86_64') {
-                window.location.href = 'apks/actium-x86_64-release.apk';
+                window.location.href = 'apks/actium-x86_64-release.apk?t=' + Date.now();
             } else {
                 // If we can't reliably detect it, show the selection sub-modal
                 downloadModalActium.style.display = 'flex';
@@ -335,6 +335,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mainNavLinks[index]) {
                 mainNavLinks.forEach(l => l.classList.remove('active'));
                 mainNavLinks[index].classList.add('active');
+            }
+        });
+    });
+
+    // Evitar caché de GitHub Pages en descargas directas
+    document.querySelectorAll('a[download]').forEach(link => {
+        link.addEventListener('click', function() {
+            try {
+                const url = new URL(this.href, window.location.href);
+                url.searchParams.set('t', Date.now());
+                this.href = url.toString();
+            } catch (err) {
+                console.error("Error setting cache-buster", err);
             }
         });
     });
